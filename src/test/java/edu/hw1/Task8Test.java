@@ -22,8 +22,8 @@ public class Task8Test {
     }
 
     @Test
-    @DisplayName("Test knightBoardCapture false")
-    public void testKnightBoardCaptureFalse() {
+    @DisplayName("Test knightBoardCapture false 1")
+    public void testKnightBoardCaptureFalse1() {
         int[][] board = {
             {1, 0, 1, 0, 1, 0, 1, 0},
             {0, 1, 0, 1, 0, 1, 0, 1},
@@ -35,8 +35,12 @@ public class Task8Test {
             {0, 0, 0, 1, 0, 1, 0, 1}
         };
         assertThat(Task8.knightBoardCapture(board)).isFalse();
+    }
 
-        board = new int[][] {
+    @Test
+    @DisplayName("Test knightBoardCapture false 2")
+    public void testKnightBoardCaptureFalse2() {
+        int[][] board = {
             {0, 0, 0, 0, 1, 0, 0, 0},
             {0, 0, 0, 0, 0, 1, 0, 0},
             {0, 0, 0, 1, 0, 0, 0, 0},

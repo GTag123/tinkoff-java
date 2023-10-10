@@ -15,7 +15,7 @@ public class Task5 {
         return false;
     }
 
-    public static boolean isPalindrome(String str) {
+    private static boolean isPalindrome(String str) {
         int left = 0;
         int right = str.length() - 1;
 
@@ -30,7 +30,7 @@ public class Task5 {
         return true;
     }
 
-    public static String sumAdjacentDigits(String str) {
+    private static String sumAdjacentDigits(String str) {
         StringBuilder result = new StringBuilder();
         int i = 0;
 
