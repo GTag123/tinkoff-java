@@ -5,12 +5,13 @@ public class Task1 {
     }
 
     @SuppressWarnings("MagicNumber")
-    public static long minutesToSeconds(String time) {// "mm:ss" format
+    public static long minutesToSeconds(String time) { // "mm:ss" format
         String[] timeArray = time.split(":");
         if (timeArray.length != 2) {
             return -1;
         }
-        long minutes, seconds;
+        long minutes;
+        long seconds;
         try {
             minutes = Long.parseLong(timeArray[0]);
             seconds = Long.parseLong(timeArray[1]);
