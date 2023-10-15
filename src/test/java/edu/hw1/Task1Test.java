@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.EmptySource;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class Task1Test {
@@ -23,7 +24,7 @@ public class Task1Test {
     }
 
     @ParameterizedTest
-    @EmptySource
+    @NullAndEmptySource
     @DisplayName("Test minutesToSeconds with empty string")
     public void testMinutesToSecondsEmptyString(String time) {
         assertThat(Task1.minutesToSeconds(time)).isEqualTo(-1);

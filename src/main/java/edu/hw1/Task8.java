@@ -1,31 +1,42 @@
 package edu.hw1;
 
 public class Task8 {
+    private static final int BOARD_SIZE = 8;
+
     private Task8() {
     }
 
     @SuppressWarnings("MagicNumber")
     public static boolean knightBoardCapture(int[][] board) {
-        if (board.length != 8 || board[0].length != 8) {
+        if (board.length != BOARD_SIZE || board[0].length != BOARD_SIZE) {
             return false;
         }
 
         int[] dx = {-2, -1, 1, 2, 2, 1, -1, -2};
         int[] dy = {1, 2, 2, 1, -1, -2, -2, -1};
 
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                if (board[i][j] == 1) {
-                    for (int k = 0; k < 8; k++) {
-                        int x = i + dx[k];
-                        int y = j + dy[k];
-                        if (x >= 0 && x < 8 && y >= 0 && y < 8 && board[x][y] == 1) {
-                            return false;
-                        }
-                    }
+        for (int i = 0; i < BOARD_SIZE; i++) {
+            for (int j = 0; j < BOARD_SIZE; j++) {
+                if (board[i][j] == 1 && isAttacked(board, i, j, dx, dy)) {
+                    return false;
                 }
             }
         }
         return true;
+    }
+
+    private static boolean isAttacked(int[][] board, int x, int y, int[] dx, int[] dy) {
+        for (int k = 0; k < BOARD_SIZE; k++) {
+            int newX = x + dx[k];
+            int newY = y + dy[k];
+            if (isValidPosition(newX, newY) && board[newX][newY] == 1) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private static boolean isValidPosition(int x, int y) {
+        return x >= 0 && x < BOARD_SIZE && y >= 0 && y < BOARD_SIZE;
     }
 }

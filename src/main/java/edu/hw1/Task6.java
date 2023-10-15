@@ -32,7 +32,6 @@ public class Task6 {
         int ascending = digits[0] * 1000 + digits[1] * 100 + digits[2] * 10 + digits[3];
         int descending = digits[3] * 1000 + digits[2] * 100 + digits[1] * 10 + digits[0];
 
-        int difference = descending - ascending;
-        return countKRecursive(difference, steps + 1);
+        return countKRecursive(descending - ascending, steps + 1);
     }
 }
