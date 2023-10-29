@@ -2,7 +2,7 @@ package edu.hw3.TreeMapComparator;
 
 import java.util.Comparator;
 
-public class TreeMapComparator<T> implements Comparator<T> {
+public class TreeMapComparator<T extends Comparable<T>> implements Comparator<T> {
     @Override
     public int compare(T o1, T o2) {
         if (o1 == o2) {
@@ -14,6 +14,6 @@ public class TreeMapComparator<T> implements Comparator<T> {
         if (o2 == null) {
             return 1;
         }
-        return ((Comparable<T>) o1).compareTo(o2);
+        return o1.compareTo(o2);
     }
 }
