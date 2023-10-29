@@ -2,7 +2,7 @@ package edu.project1;
 
 import java.util.Arrays;
 
-class Session {
+public class Session {
     private final String answer;
     private final char[] userAnswer;
     private final int maxAttempts;

@@ -2,49 +2,56 @@ package edu.project1;
 
 import java.util.NoSuchElementException;
 import java.util.Scanner;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class ConsoleHangman {
-    private ConsoleHangman() {
+    private final static Scanner SCANNER = new Scanner(System.in);
+    private static final Logger LOGGER = LogManager.getLogger();
+    Session session;
+
+    public ConsoleHangman(GameDictionary dict) {
+        String word = dict.randomWord();
+        int maxAttempts = Integer.parseInt(Configs.getInstance().getProperty("maxAttempts"));
+        session = new Session(word, maxAttempts);
     }
 
-    private final static Scanner SCANNER = new Scanner(System.in);
-
-    @SuppressWarnings("UncommentedMain")
-    public static void main(String[] args) {
-        String word = new GameDictionary().randomWord();
-        Session session = new Session(word, Configs.MAX_ATTEMPTS);
-
+    public void play() {
         while (true) {
-            Printer.printStr("The word: " + String.valueOf(session.getUserAnswer()));
-            Printer.printStr("Guess a letter: ");
+            LOGGER.info("The word: " + String.valueOf(session.getUserAnswer()));
+            LOGGER.info("Guess a letter: ");
             try {
                 String input = SCANNER.next();
 
                 // Выход из игры при помощи команды
-                if (input.equalsIgnoreCase(Configs.EXIT_COMMAND)) {
-                    Printer.printStr(Configs.QUIT_MESSAGE);
+                if (input.equalsIgnoreCase(Configs.getInstance().getProperty("exitCommand"))) {
+                    printQuit();
                     break;
                 }
 
                 if (input.length() != 1) {
-                    Printer.printStr("Please enter a single letter.");
+                    LOGGER.info("Please enter a single letter.");
                     continue;
                 }
 
                 char guess = input.charAt(0);
                 GuessResult result = session.guess(guess);
-                Printer.printState(result);
+                LOGGER.info(result.message());
 
                 if (result instanceof GuessResult.Defeat || result instanceof GuessResult.Win) {
                     break;
                 }
             } catch (NoSuchElementException e) {
                 // Выход из игры при нажатии Ctrl+D
-                Printer.printStr(Configs.QUIT_MESSAGE);
+                printQuit();
                 break;
             }
         }
         SCANNER.close();
+    }
+
+    private void printQuit() {
+        LOGGER.info(Configs.getInstance().getProperty("quitMsg"));
     }
 
 }

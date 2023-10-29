@@ -2,7 +2,7 @@ package edu.project1;
 
 import org.jetbrains.annotations.NotNull;
 
-sealed interface GuessResult {
+public sealed interface GuessResult {
     // храним attempt, maxAttempts, state если вдруг пригодятся в message
     int attempt();
 
