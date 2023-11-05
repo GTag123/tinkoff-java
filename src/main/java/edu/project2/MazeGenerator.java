@@ -7,7 +7,7 @@ public class MazeGenerator implements Generator {
     private static final int[][] DIRECTIONS = {{0, 2}, {0, -2}, {2, 0}, {-2, 0}};
 
     @Override
-    public Maze generate(int height, int width) {
+    public Maze generate(int height, int width, Random random) {
         Cell[][] grid = new Cell[height][width];
         for (int row = 0; row < height; row++) {
             for (int col = 0; col < width; col++) {
@@ -15,7 +15,6 @@ public class MazeGenerator implements Generator {
             }
         }
 
-        Random random = new Random();
         Stack<Coordinate> stack = new Stack<>();
         int startRow = 1;
         int startCol = 1;

@@ -1,6 +1,7 @@
 package edu.project2;
 
 import java.util.List;
+import java.util.Random;
 
 public class MazeGame {
     private final Renderer renderer;
@@ -21,7 +22,7 @@ public class MazeGame {
         this.renderer = renderer;
         this.start = start;
         this.end = end;
-        this.maze = generator.generate(h, w);
+        this.maze = generator.generate(h, w, new Random());
         this.path = solver.solve(maze, start, end);
     }
 
