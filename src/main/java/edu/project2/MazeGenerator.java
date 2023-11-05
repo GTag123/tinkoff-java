@@ -4,6 +4,8 @@ import java.util.Random;
 import java.util.Stack;
 
 public class MazeGenerator implements Generator {
+    private static final int[][] DIRECTIONS = {{0, 2}, {0, -2}, {2, 0}, {-2, 0}};
+
     @Override
     public Maze generate(int height, int width) {
         Cell[][] grid = new Cell[height][width];
@@ -29,10 +31,9 @@ public class MazeGenerator implements Generator {
             int col = current.col();
             boolean hasUnvisitedNeighbors = false;
 
-            int[][] directions = {{0, 2}, {0, -2}, {2, 0}, {-2, 0}};
-            shuffleArray(directions, random);
+            shuffleArray(DIRECTIONS, random);
 
-            for (int[] direction : directions) {
+            for (int[] direction : DIRECTIONS) {
                 int newRow = row + direction[0];
                 int newCol = col + direction[1];
 
@@ -52,10 +53,6 @@ public class MazeGenerator implements Generator {
                 stack.pop();
             }
         }
-
-        // Добавьте вход и выход в лабиринт
-        grid[0][1] = new Cell(0, 1, Cell.Type.PASSAGE); // Вход
-        grid[height - 1][endCol] = new Cell(height - 1, endCol, Cell.Type.PASSAGE); // Выход
 
         return new Maze(height, width, grid);
     }

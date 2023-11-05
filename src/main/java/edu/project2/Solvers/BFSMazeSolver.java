@@ -1,15 +1,17 @@
-package edu.project2;
+package edu.project2.Solvers;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
-
+import edu.project2.Cell;
+import edu.project2.Coordinate;
+import edu.project2.Maze;
+import edu.project2.Solver;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-public class MazeSolver implements Solver {
+public class BFSMazeSolver implements Solver {
+    private static final int[][] DIRECTIONS = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
+
     @Override
     public List<Coordinate> solve(Maze maze, Coordinate start, Coordinate end) {
         List<Coordinate> path = new ArrayList<>();
@@ -24,7 +26,6 @@ public class MazeSolver implements Solver {
             Coordinate current = queue.poll();
 
             if (current.equals(end)) {
-                // Путь найден, восстановим его
                 path.add(current);
                 while (!current.equals(start)) {
                     current = parent[current.row()][current.col()];
@@ -33,10 +34,7 @@ public class MazeSolver implements Solver {
                 return path;
             }
 
-            // Перебор соседей
-            int[][] directions = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
-
-            for (int[] direction : directions) {
+            for (int[] direction : DIRECTIONS) {
                 int newRow = current.row() + direction[0];
                 int newCol = current.col() + direction[1];
 
@@ -49,13 +47,12 @@ public class MazeSolver implements Solver {
             }
         }
 
-        // Если путь не найден, вернем пустой список
         return path;
     }
 
     private boolean isValidMove(Maze maze, int row, int col) {
-        return row >= 0 && row < maze.getHeight() && col >= 0 && col < maze.getWidth() &&
-            maze.getCell(row, col).type() == Cell.Type.PASSAGE;
+        return row >= 0 && row < maze.getHeight() && col >= 0 && col < maze.getWidth()
+            && maze.getCell(row, col).type() == Cell.Type.PASSAGE;
     }
 }
 
