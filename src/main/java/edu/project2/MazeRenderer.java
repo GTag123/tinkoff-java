@@ -18,6 +18,7 @@ public class MazeRenderer implements Renderer {
         for (int row = 0; row < maze.getHeight(); row++) {
             for (int col = 0; col < maze.getWidth(); col++) {
                 Coordinate current = new Coordinate(row, col);
+
                 if (path != null && path.contains(current)) {
                     sb.append(PATH_SYMBOL);
                 } else {
