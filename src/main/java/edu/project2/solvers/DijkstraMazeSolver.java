@@ -1,4 +1,4 @@
-package edu.project2.Solvers;
+package edu.project2.solvers;
 
 import edu.project2.Cell;
 import edu.project2.Coordinate;

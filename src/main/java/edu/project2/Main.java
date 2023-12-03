@@ -1,8 +1,8 @@
 package edu.project2;
 
-import edu.project2.Solvers.BFSMazeSolver;
-import edu.project2.Solvers.DFSMazeSolver;
-import edu.project2.Solvers.DijkstraMazeSolver;
+import edu.project2.solvers.BFSMazeSolver;
+import edu.project2.solvers.DFSMazeSolver;
+import edu.project2.solvers.DijkstraMazeSolver;
 import java.util.Scanner;
 
 public class Main {
@@ -14,10 +14,10 @@ public class Main {
 
     @SuppressWarnings({"RegexpSinglelineJava", "MagicNumber"})
     public static void main(String[] args) {
-        System.out.print("Введите высоту сетки: ");
+        System.out.printf("Введите высоту сетки (минимальный размер %d): ", MIN_SIZE);
         int height = SCANNER.nextInt();
 
-        System.out.print("Введите ширину сетки: ");
+        System.out.printf("Введите ширину сетки (минимальный размер %d): ", MIN_SIZE);
         int width = SCANNER.nextInt();
 
         if (!checkInput(height, width)) {

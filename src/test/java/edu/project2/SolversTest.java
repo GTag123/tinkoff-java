@@ -1,8 +1,8 @@
 package edu.project2;
 
-import edu.project2.Solvers.BFSMazeSolver;
-import edu.project2.Solvers.DFSMazeSolver;
-import edu.project2.Solvers.DijkstraMazeSolver;
+import edu.project2.solvers.BFSMazeSolver;
+import edu.project2.solvers.DFSMazeSolver;
+import edu.project2.solvers.DijkstraMazeSolver;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

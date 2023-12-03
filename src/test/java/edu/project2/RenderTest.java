@@ -1,6 +1,6 @@
 package edu.project2;
 
-import edu.project2.Solvers.DFSMazeSolver;
+import edu.project2.solvers.DFSMazeSolver;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
